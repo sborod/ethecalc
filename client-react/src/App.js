@@ -106,13 +106,12 @@ class App extends Component {
     }
 
     let stringToRequestEncoder = new StringToRequestEncoder()
-    let that = this;
     stringToRequestEncoder.encode_and_request(this.state.text)
-      .then(function (resp) {
-        that.setState( (state) => ({
+      .then( (resp) => {
+        this.setState( (state) => ({
           last_operation_str: state.text,
           text: resp.result
-        }));
+        }))
       })
   }
 }
