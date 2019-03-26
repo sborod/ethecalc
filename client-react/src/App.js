@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CalculatorStringChecker from './lib/calculator_string_checker.js';
-import StringToRequestEncoder from './lib/string_to_request_encoder.js';
+import CalculatorStringToRequestEncoder from './lib/calculator_string_to_request_encoder.js';
 import './App.css';
 
 class App extends Component {
@@ -105,7 +105,7 @@ class App extends Component {
       return null;
     }
 
-    let stringToRequestEncoder = new StringToRequestEncoder()
+    let stringToRequestEncoder = new CalculatorStringToRequestEncoder()
     stringToRequestEncoder.encode_and_request(this.state.text)
       .then( (resp) => {
         this.setState( (state) => ({
