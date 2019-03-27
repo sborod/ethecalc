@@ -1,21 +1,9 @@
-const AbiCoder = require('web3-eth-abi').AbiCoder;
-const abi = new AbiCoder();
+const web3CalculatorContract = require("./web3_calculator_contract")
 
 class CalculatorActionsEncoder {
-    encode (action, param1, param2) {
+    encode_and_call (action, param1, param2) {
         [param1, param2] = this._convert_to_cents(action, param1, param2);
-
-        return abi.encodeFunctionCall({
-            name: action,
-            type: 'function',
-            inputs: [{
-                type: 'int256',
-                name: 'x'
-            }, {
-                type: 'int256',
-                name: 'y'
-            }]
-        }, [ param1.toString(), param2.toString() ]);
+        return web3CalculatorContract.methods[action](param1, param2).call();
     }
 
     _convert_to_cents(action, param1, param2) {
